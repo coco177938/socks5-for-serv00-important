@@ -18,7 +18,7 @@ if [ "$(command -v pm2)" == "/home/${USER}/.npm-global/bin/pm2" ]; then
 else
   if [ -e "${WORKDIR}/start.sh" ] && [ -e "${FILE_PATH}/config.json" ]; then
     echo "添加 nezha & socks5 的 crontab 重启任务"
-    (crontab -l | grep -F "@reboot cd xray && nohup ./xray -c config.json & ​ && ${CRON_S5} && ${CRON_NEZHA}") || (crontab -l; echo "@reboot cd xray && nohup ./xray -c config.json & && ${CRON_S5} && ${CRON_NEZHA}") | crontab -
+    (crontab -l | grep -F "@reboot cd xray && nohup ./xray -c config.json & && ${CRON_S5} && ${CRON_NEZHA}") || (crontab -l; echo "@reboot cd xray && nohup ./xray -c config.json & && ${CRON_S5} && ${CRON_NEZHA}") | crontab -
     (crontab -l | grep -F "* * pgrep -x \"nezha-agent\" > /dev/null || ${CRON_NEZHA}") || (crontab -l; echo "*/12 * * * * pgrep -x \"nezha-agent\" > /dev/null || ${CRON_NEZHA}") | crontab -
     (crontab -l | grep -F "* * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") || (crontab -l; echo "*/12 * * * * pgrep -x \"s5\" > /dev/null || ${CRON_S5}") | crontab -
   elif [ -e "${WORKDIR}/start.sh" ]; then
