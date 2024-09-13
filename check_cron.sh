@@ -3,7 +3,7 @@
 USER=$(whoami)
 USER_LOWER="${USER,,}"
 WORKDIR="/home/${USER_LOWER}/.nezha-agent"
-CRON_NEZHA="nohup ${WORKDIR}/start.sh >/dev/null 2>&1 && cd xray && nohup ./xray -c config.json >/dev/null 2>&1 &"
+CRON_NEZHA="nohup ${WORKDIR}/start.sh >/dev/null 2>&1 &"
 REBOOT_COMMAND="@reboot pkill -kill -u $USER && $PM2_PATH resurrect >> /home/$USER/pm2_resurrect.log 2>&1"
 
 echo "检查并添加 crontab 任务"
